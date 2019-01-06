@@ -1,19 +1,19 @@
 # http-parser does not provide a CMake build script
 
-set(http-parser_headers http-parser/http_parser.h)
-set(http-parser_sources http-parser/http_parser.c)
-if(MSVC)
+#set(http-parser_headers http-parser/http_parser.h)
+#set(http-parser_sources http-parser/http_parser.c)
+#if(MSVC)
   # MSVC does not support C99, but its C++ compiler is
   # compatible with the http-parser library's code.
-  set_source_files_properties(
-    ${http-parser_headers}
-    ${http-parser_sources}
-    PROPERTIES LANGUAGE CXX
-  )
-endif()
+  #  set_source_files_properties(
+  #   ${http-parser_headers}
+  #   ${http-parser_sources}
+  #   PROPERTIES LANGUAGE CXX
+  #  )
+#endif()
 
-install(FILES ${http-parser_headers} DESTINATION include/httpxx/http-parser
-  COMPONENT dev)
+#install(FILES ${http-parser_headers} DESTINATION include/httpxx/http-parser
+#  COMPONENT dev)
 
 # httpxx library
 
@@ -44,13 +44,15 @@ set(sources
   Response.cpp
   ResponseBuilder.cpp
   Url.cpp
-  http-parser/http_parser.c
+  #  http-parser/http_parser.c
 )
 add_library(httpxx
-  STATIC
+	SHARED
   ${sources}
   ${headers}
 )
+
+target_link_libraries(httpxx http_parser)
 
 install(TARGETS httpxx
   EXPORT httpxxTargets
