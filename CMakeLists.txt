@@ -7,7 +7,7 @@ if(CMAKE_VERSION VERSION_LESS 3.0)
   project(httpxx)
 else()
   cmake_policy(SET CMP0048 NEW)
-  project(httpxx VERSION 0.1.0)
+  project(httpxx VERSION 0.1.0 DESCRIPTION "C++ wrapper for C-based HTTP parser")
 endif()
 
 # Compile API documentation from source code.

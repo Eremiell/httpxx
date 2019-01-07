@@ -47,12 +47,17 @@ set(sources
   #  http-parser/http_parser.c
 )
 add_library(httpxx
-	SHARED
+  SHARED
   ${sources}
   ${headers}
 )
 
 target_link_libraries(httpxx http_parser)
+
+set_target_properties(httpxx PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION 0.1
+)
 
 install(TARGETS httpxx
   EXPORT httpxxTargets
